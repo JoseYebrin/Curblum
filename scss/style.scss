@@ -120,7 +120,7 @@ a {
   height: 100vh;
   min-height: 656px;
   max-height: 826px;
-  background-image: url("../assets/green-slate.jpg");
+  background-image: url("assets/herobg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -295,7 +295,7 @@ a {
           font-size: 2rem;
         }
         &:active {
-          transform: rotate(-15deg);
+          transform: rotate(-10deg);
         }
       }
       & #instagram:active {
@@ -365,15 +365,15 @@ a {
     &>.hero-intro {
       & #instagram:hover {
         color: #ff5b91;
-        transform: rotate(-15deg);
+        transform: rotate(-10deg);
       }
       & #twitter:hover {
         color: #00acee;
-        transform: rotate(-15deg);
+        transform: rotate(-10deg);
       }
       & #facebook:hover {
         color: #3b5998;
-        transform: rotate(-15deg);
+        transform: rotate(-10deg);
       }
       &>.hero-intro-text-b {
         font-size: 7vw;
