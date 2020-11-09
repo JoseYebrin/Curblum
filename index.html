@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/82c7bbe089.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Curblum Web Services</title>
+  </head>
+  <body>
+    <div id="mobileNav" class="mobile-nav-container">
+      <ul class="mobile-nav">
+        <li>
+          <a href="#" class="mobile-nav-item">Home</a>
+        </li>
+        <li>
+          <a href="#" class="mobile-nav-item">Services</a>
+        </li>
+        <li>
+          <a href="#" class="mobile-nav-item">Contact Us</a>
+        </li>
+        <li>
+          <a href="#" class="get-started mobile-nav-item">Get Started</a>
+        </li>
+      </ul>
+    </div>
+    <div class="hero">
+      <nav id="topNav" class="topnav">
+        <a href="index.html" class="topnav-logo"
+          ><img src="assets/logo.png" alt="Curblum"
+        /></a>
+        <div id="b1" class="topnav-icon-container">
+          <svg id="i1" class="topnav-icon" viewBox="0 0 100 100">
+            <path id="top-line-1" d="M30,37 L70,37 Z"></path>
+            <path id="middle-line-1" d="M30,50 L70,50 Z"></path>
+            <path id="bottom-line-1" d="M30,63 L70,63 Z"></path>
+          </svg>
+        </div>
+        <ul class="topnav-list">
+          <li>
+            <a id="1" href="#" class="topnav-item"><p>Home</p></a>
+          </li>
+          <li>
+            <a id="2" href="#" class="topnav-item"><p>Services</p></a>
+          </li>
+          <li>
+            <a id="3" href="#" class="topnav-item"><p>Contact Us</p></a>
+          </li>
+          <li class="get-started">
+            <a id="4" href="#" class="HOVER topnav-item"
+              ><span></span>
+              <p>Get Started</p></a
+            >
+          </li>
+        </ul>
+        <div id="topNavMarker" class="topnav-marker"></div>
+      </nav>
+      <div id="heroContent" class="hero-intro-container container">
+        <div class="hero-intro">
+          <p class="hero-intro-text-b">We Build</p>
+          <p class="hero-intro-text-b">The Website</p>
+          <p class="hero-intro-text-b">You Need</p>
+          <p class="hero-intro-text-s">Discover Greatness</p>
+          <div class="hero-social">
+            <a id="instagram" href="#"><i class="fab fa-instagram"></i></a>
+            <a id="twitter" href="#"><i class="fab fa-twitter"></i></a>
+            <a id="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div id="tilt" class="hero-img">
+          <img src="assets/5.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/409445/animateAnything.js"></script>
+    <script src="effects.js"></script>
+    <script>
+      $(document).ready(function () {
+        const mobileIcon = $("#i1");
+        const mobileNav = $("#mobileNav");
+        const topNavMarker = $("#topNavMarker");
+        const topNav = $("#topNav");
+        $("#1").hover(
+          function () {
+            topNavMarker.css({
+              left: "calc(100% - 672px)",
+              width: "137px",
+            });
+          },
+          function () {
+            topNavMarker.css({
+              left: 0,
+              width: "116px",
+            });
+          }
+        );
+        $("#2").hover(
+          function () {
+            topNavMarker.css({
+              left: "calc(100% - 535px)",
+              width: "161px",
+            });
+          },
+          function () {
+            topNavMarker.css({
+              left: 0,
+              width: "116px",
+            });
+          }
+        );
+        $("#3").hover(
+          function () {
+            topNavMarker.css({
+              left: "calc(100% - 374px)",
+              width: "184px",
+            });
+          },
+          function () {
+            topNavMarker.css({
+              left: 0,
+              width: "116px",
+            });
+          }
+        );
+        mobileIcon.on("click", function () {
+          if (!$(this).hasClass("disabled")) {
+            $(this).addClass("disabled");
+            mobileNav.toggle();
+            setTimeout(() => {
+              $(this).removeClass("disabled");
+            }, 500);
+          }
+        });
+        mobileNav.on("click", function (e) {
+          if (e.target == document.getElementById("mobileNav")) {
+            $(this).toggle();
+          }
+        });
+        //Intro Animations
+        $(".hero-img").css({ left: "0", opacity: 1 });
+        setTimeout(() => {
+          topNav.css({ top: 0 });
+          setTimeout(() => {
+            $(".hero-intro-text-b:nth-child(3)").css({ left: 0 });
+            setTimeout(() => {
+              $(".hero-intro-text-b:nth-child(2)").css({ left: 0 });
+              setTimeout(() => {
+                $(".hero-intro-text-b:nth-child(1)").css({ left: 0 });
+                setTimeout(() => {
+                  $(".hero-intro-text-s").css({ opacity: 1 });
+                  $(".hero-social").css({ opacity: 1 });
+                }, 700);
+              }, 200);
+            }, 200);
+          }, 500);
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+/* Sass Functions */
+
+/* Sass Mixins */
+
+@mixin shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+@mixin bottomShadow {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.17);
+}
+
+@mixin notSelectable {
+  cursor: default;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+/* Sass Variables */
+
+$main: #0EC888;
+$turquoise: #0ACDBC;
+$blue: #008AA4;
+$darkGreen: #38A497;
+$white: #FFFFFF;
+$black: #0B0A07;

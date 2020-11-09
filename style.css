@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&display=swap");
+/* Sass Functions */
+/* Sass Mixins */
+/* Sass Variables */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, * {
+  font-size: 16px;
+  font-family: "Titillium Web", Helvetica;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/*BUTTON EFFECT START*/
+.HOVER {
+  --width: 100%;
+  --time: 0.5s;
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  padding: 1em;
+  color: white;
+  background: #222;
+  overflow: hidden;
+}
+
+.HOVER p {
+  position: relative;
+  z-index: 5;
+  -webkit-transition: color var(--time);
+  transition: color var(--time);
+}
+
+.HOVER:hover p {
+  color: #0EC888;
+}
+
+.HOVER span {
+  position: absolute;
+  display: block;
+  content: "";
+  z-index: 0;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  background: #fff;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: width var(--time), padding-top var(--time);
+  transition: width var(--time), padding-top var(--time);
+}
+
+.HOVER:hover span {
+  width: calc(var(--width) * 2.25);
+  padding-top: calc(var(--width) * 2.25);
+}
+
+/*BUTTON EFFECT END*/
+.mobile-nav-container {
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+
+.mobile-nav-container > .mobile-nav {
+  position: absolute;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  padding-top: 20px;
+  right: 0;
+  background-color: #FFFFFF;
+  color: #0EC888;
+  font-weight: bold;
+}
+
+.mobile-nav-container > .mobile-nav .mobile-nav-item {
+  display: inline-block;
+  font-size: 1.3rem;
+  padding: 5px;
+  margin: 5px 70px 5px 15px;
+}
+
+.mobile-nav-container > .mobile-nav .get-started {
+  display: block;
+  margin: 50px 20px 0 20px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #0EC888;
+  color: #FFFFFF;
+  border-radius: 50px;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 656px;
+  max-height: 826px;
+  background-image: url("../assets/green-slate.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero::after {
+  content: '\f103';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  -webkit-animation: arrowDown 2s ease-in-out forwards infinite;
+          animation: arrowDown 2s ease-in-out forwards infinite;
+}
+
+.topnav-icon-container {
+  width: 80px;
+  height: 100%;
+  padding: 0 20px;
+  background-color: #FFFFFF;
+  border-radius: 0 0 0 50px;
+}
+
+.topnav-icon {
+  stroke: #0EC888;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.topnav {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 80px;
+  top: -80px;
+  -webkit-transition: top 1s ease-out;
+  transition: top 1s ease-out;
+}
+
+.topnav .topnav-logo {
+  width: 80px;
+  background-color: #FFFFFF;
+  border-radius: 0 0 50px 0;
+}
+
+.topnav .topnav-logo > img {
+  height: 100%;
+  padding: 20px;
+}
+
+.topnav > .topnav-marker {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 116px;
+  background-color: #0EC888;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.topnav-list {
+  display: none;
+  color: #0EC888;
+  font-weight: bold;
+}
+
+.topnav-list > li {
+  padding: 4px 0;
+}
+
+.topnav-list .topnav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  padding: 0 40px;
+}
+
+.topnav-list .topnav-item > p {
+  font-size: 1.4rem;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  margin-top: 4px;
+  -webkit-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+}
+
+.topnav-list .topnav-item:hover p {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.topnav-list .topnav-item:active {
+  color: #0b9868;
+}
+
+.topnav-list .get-started {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: #FFFFFF;
+  padding: 0 10px;
+}
+
+.topnav-list .get-started > a {
+  height: auto;
+  padding: 6px 28px;
+  background-color: #0EC888;
+  border: 2px solid #0EC888;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
+}
+
+.topnav-list .get-started > a > p {
+  margin: 0;
+}
+
+.topnav-list .get-started > a:hover {
+  -webkit-box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.17);
+          box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.17);
+}
+
+.topnav-list .get-started > a:hover > p {
+  -webkit-transform: none;
+          transform: none;
+}
+
+.topnav-list .get-started > a:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.hero-intro-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-bottom: 5rem;
+  height: calc(100% - 80px);
+}
+
+.hero-intro-container > .hero-intro {
+  color: #FFFFFF;
+}
+
+.hero-intro-container > .hero-intro > .hero-intro-text-b {
+  position: relative;
+  left: -100vw;
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-transition: left 0.3s ease-out;
+  transition: left 0.3s ease-out;
+}
+
+.hero-intro-container > .hero-intro > .hero-intro-text-s {
+  opacity: 0;
+  padding: 10px 0;
+  color: #cccccc;
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+}
+
+.hero-intro-container > .hero-intro > .hero-social {
+  opacity: 0;
+  padding-top: 20px;
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+}
+
+.hero-intro-container > .hero-intro > .hero-social > a {
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0 10px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.hero-intro-container > .hero-intro > .hero-social > a > i {
+  font-size: 2rem;
+}
+
+.hero-intro-container > .hero-intro > .hero-social > a:active {
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+
+.hero-intro-container > .hero-intro > .hero-social #instagram:active {
+  color: #ff5b91;
+}
+
+.hero-intro-container > .hero-intro > .hero-social #twitter:active {
+  color: #00acee;
+}
+
+.hero-intro-container > .hero-intro > .hero-social #facebook:active {
+  color: #3b5998;
+}
+
+.hero-intro-container > .hero-img {
+  opacity: 0;
+  position: relative;
+  left: 100px;
+  margin: 20px 0;
+  -webkit-transition: left 1s, opacity 1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
+  transition: left 1s, opacity 1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
+  transition: box-shadow 0.1s, transform 0.1s, left 1s, opacity 1s;
+  transition: box-shadow 0.1s, transform 0.1s, left 1s, opacity 1s, -webkit-box-shadow 0.1s, -webkit-transform 0.1s;
+}
+
+.hero-intro-container > .hero-img > img {
+  width: 100%;
+  max-width: 300px;
+}
+
+.hero-intro-container > #tilt:hover {
+  -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+}
+
+@-webkit-keyframes arrowDown {
+  0% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+}
+
+@keyframes arrowDown {
+  0% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  50% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .topnav-icon-container {
+    display: none;
+  }
+  .topnav {
+    background-color: #FFFFFF;
+  }
+  .topnav > .topnav-marker {
+    display: block;
+  }
+  .topnav .topnav-logo > img {
+    padding: 12px 30px;
+  }
+  .topnav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .hero-intro-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .hero-intro-container > .hero-intro #instagram:hover {
+    color: #ff5b91;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  .hero-intro-container > .hero-intro #twitter:hover {
+    color: #00acee;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  .hero-intro-container > .hero-intro #facebook:hover {
+    color: #3b5998;
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  .hero-intro-container > .hero-intro > .hero-intro-text-b {
+    font-size: 7vw;
+  }
+  .hero-intro-container > .hero-img {
+    margin: 0 20px;
+  }
+  .hero-intro-container > .hero-img > img {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .hero-intro-container > .hero-intro > .hero-intro-text-b {
+    font-size: 8rem;
+  }
+}
