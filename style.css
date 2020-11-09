@@ -117,7 +117,7 @@ a {
   height: 100vh;
   min-height: 656px;
   max-height: 826px;
-  background-image: url("../assets/green-slate.jpg");
+  background-image: url("assets/green-slate.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
