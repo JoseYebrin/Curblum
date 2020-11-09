@@ -117,7 +117,7 @@ a {
   height: 100vh;
   min-height: 656px;
   max-height: 826px;
-  background-image: url("assets/green-slate.jpg");
+  background-image: url("assets/herobg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -344,8 +344,8 @@ a {
 }
 
 .hero-intro-container > .hero-intro > .hero-social > a:active {
-  -webkit-transform: rotate(-15deg);
-          transform: rotate(-15deg);
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
 }
 
 .hero-intro-container > .hero-intro > .hero-social #instagram:active {
@@ -437,18 +437,18 @@ a {
   }
   .hero-intro-container > .hero-intro #instagram:hover {
     color: #ff5b91;
-    -webkit-transform: rotate(-15deg);
-            transform: rotate(-15deg);
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
   }
   .hero-intro-container > .hero-intro #twitter:hover {
     color: #00acee;
-    -webkit-transform: rotate(-15deg);
-            transform: rotate(-15deg);
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
   }
   .hero-intro-container > .hero-intro #facebook:hover {
     color: #3b5998;
-    -webkit-transform: rotate(-15deg);
-            transform: rotate(-15deg);
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
   }
   .hero-intro-container > .hero-intro > .hero-intro-text-b {
     font-size: 7vw;
