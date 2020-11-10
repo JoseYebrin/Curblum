@@ -159,6 +159,18 @@
             }, 200);
           }, 500);
         }, 1000);
+        if (!Modernizr.touch) {
+          $("#tilt").hover(
+            function () {
+              $(this).css({ boxShadow: "0px 0px 30px rgba(0,0,0, 0.6)" });
+            },
+            function () {
+              $(this).css({ boxShadow: "none" });
+            }
+          );
+        } else {
+          alert("no touch");
+        }
       });
     </script>
   </body>

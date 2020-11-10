@@ -1,8 +1,6 @@
-function isTouchDevice() {
-  let elm = document.createElement('div');
-  elm.setAttribute('ongesturestart', 'return;'); // or try "ontouchstart"
-  return typeof elm.ongesturestart === "function";
-}
+/*! modernizr 3.6.0 (Custom Build) | MIT *
+ * https://modernizr.com/download/?-touchevents-setclasses !*/
+!function(e,n,t){function o(e,n){return typeof e===n}function s(){var e,n,t,s,a,i,r;for(var l in c)if(c.hasOwnProperty(l)){if(e=[],n=c[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(s=o(n.fn,"function")?n.fn():n.fn,a=0;a<e.length;a++)i=e[a],r=i.split("."),1===r.length?Modernizr[r[0]]=s:(!Modernizr[r[0]]||Modernizr[r[0]]instanceof Boolean||(Modernizr[r[0]]=new Boolean(Modernizr[r[0]])),Modernizr[r[0]][r[1]]=s),f.push((s?"":"no-")+r.join("-"))}}function a(e){var n=u.className,t=Modernizr._config.classPrefix||"";if(p&&(n=n.baseVal),Modernizr._config.enableJSClass){var o=new RegExp("(^|\\s)"+t+"no-js(\\s|$)");n=n.replace(o,"$1"+t+"js$2")}Modernizr._config.enableClasses&&(n+=" "+t+e.join(" "+t),p?u.className.baseVal=n:u.className=n)}function i(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):p?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function r(){var e=n.body;return e||(e=i(p?"svg":"body"),e.fake=!0),e}function l(e,t,o,s){var a,l,f,c,d="modernizr",p=i("div"),h=r();if(parseInt(o,10))for(;o--;)f=i("div"),f.id=s?s[o]:d+(o+1),p.appendChild(f);return a=i("style"),a.type="text/css",a.id="s"+d,(h.fake?h:p).appendChild(a),h.appendChild(p),a.styleSheet?a.styleSheet.cssText=e:a.appendChild(n.createTextNode(e)),p.id=d,h.fake&&(h.style.background="",h.style.overflow="hidden",c=u.style.overflow,u.style.overflow="hidden",u.appendChild(h)),l=t(p,e),h.fake?(h.parentNode.removeChild(h),u.style.overflow=c,u.offsetHeight):p.parentNode.removeChild(p),!!l}var f=[],c=[],d={_version:"3.6.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){c.push({name:e,fn:n,options:t})},addAsyncTest:function(e){c.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=d,Modernizr=new Modernizr;var u=n.documentElement,p="svg"===u.nodeName.toLowerCase(),h=d._config.usePrefixes?" -webkit- -moz- -o- -ms- ".split(" "):["",""];d._prefixes=h;var m=d.testStyles=l;Modernizr.addTest("touchevents",function(){var t;if("ontouchstart"in e||e.DocumentTouch&&n instanceof DocumentTouch)t=!0;else{var o=["@media (",h.join("touch-enabled),("),"heartz",")","{#modernizr{top:9px;position:absolute}}"].join("");m(o,function(e){t=9===e.offsetTop})}return t}),s(),a(f),delete d.addTest,delete d.addAsyncTest;for(var v=0;v<Modernizr._q.length;v++)Modernizr._q[v]();e.Modernizr=Modernizr}(window,document);
 
 /*Button Hover Effects START*/
 const ANIMATEDCLASSNAME = "animated";
@@ -215,62 +213,64 @@ mobileNav.addEventListener( "click", (e)=> {
 });
 /*Mobile Menu Icon END*/
 /*Image Tilt Effect START*/
-/* Store the element in el */
-let el = document.getElementById('tilt')
+if (!Modernizr.touch) {
+	/* Store the element in el */
+	let el = document.getElementById('tilt')
 
-/* Get the height and width of the element */
-const height = el.clientHeight
-const width = el.clientWidth
+	/* Get the height and width of the element */
+	const height = el.clientHeight
+	const width = el.clientWidth
 
-/*
-  * Add a listener for mousemove event
-  * Which will trigger function 'handleMove'
-  * On mousemove
-  */
-el.addEventListener('mousemove', handleMove)
+	/*
+		* Add a listener for mousemove event
+		* Which will trigger function 'handleMove'
+		* On mousemove
+		*/
+	el.addEventListener('mousemove', handleMove)
 
-/* Define function a */
-function handleMove(e) {
-  /*
-    * Get position of mouse cursor
-    * With respect to the element
-    * On mouseover
-    */
-  /* Store the x position */
-  const xVal = e.layerX
-  /* Store the y position */
-  const yVal = e.layerY
-  
-  /*
-    * Calculate rotation valuee along the Y-axis
-    * Here the multiplier 20 is to
-    * Control the rotation
-    * You can change the value and see the results
-    */
-  const yRotation = 20 * ((xVal - width / 2) / width)
-  
-  /* Calculate the rotation along the X-axis */
-  const xRotation = -20 * ((yVal - height / 2) / height)
-  
-  /* Generate string for CSS transform property */
-  const string = 'perspective(500px) scale(1.1) rotateX(' + xRotation + 'deg) rotateY(' + yRotation + 'deg)'
-  
-  /* Apply the calculated transformation */
-  el.style.transform = string
+	/* Define function a */
+	function handleMove(e) {
+		/*
+			* Get position of mouse cursor
+			* With respect to the element
+			* On mouseover
+			*/
+		/* Store the x position */
+		const xVal = e.layerX
+		/* Store the y position */
+		const yVal = e.layerY
+		
+		/*
+			* Calculate rotation valuee along the Y-axis
+			* Here the multiplier 20 is to
+			* Control the rotation
+			* You can change the value and see the results
+			*/
+		const yRotation = 20 * ((xVal - width / 2) / width)
+		
+		/* Calculate the rotation along the X-axis */
+		const xRotation = -20 * ((yVal - height / 2) / height)
+		
+		/* Generate string for CSS transform property */
+		const string = 'perspective(500px) scale(1.1) rotateX(' + xRotation + 'deg) rotateY(' + yRotation + 'deg)'
+		
+		/* Apply the calculated transformation */
+		el.style.transform = string
+	}
+
+	/* Add listener for mouseout event, remove the rotation */
+	el.addEventListener('mouseout', function() {
+		el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)'
+	})
+
+	/* Add listener for mousedown event, to simulate click */
+	el.addEventListener('mousedown', function() {
+		el.style.transform = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)'
+	})
+
+	/* Add listener for mouseup, simulate release of mouse click */
+	el.addEventListener('mouseup', function() {
+		el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
+	})
 }
-
-/* Add listener for mouseout event, remove the rotation */
-el.addEventListener('mouseout', function() {
-  el.style.transform = 'perspective(500px) scale(1) rotateX(0) rotateY(0)'
-})
-
-/* Add listener for mousedown event, to simulate click */
-el.addEventListener('mousedown', function() {
-  el.style.transform = 'perspective(500px) scale(0.9) rotateX(0) rotateY(0)'
-})
-
-/* Add listener for mouseup, simulate release of mouse click */
-el.addEventListener('mouseup', function() {
-  el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
-})
 /*Image Tilt Effect END*/
