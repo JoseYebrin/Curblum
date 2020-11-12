@@ -213,7 +213,7 @@ mobileNav.addEventListener( "click", (e)=> {
 });
 /*Mobile Menu Icon END*/
 /*Image Tilt Effect START*/
-setTimeout(() => {
+window.addEventListener('load', function() { 
 	if (!Modernizr.touchevents) {
 		/* Store the element in el */
 		let el = document.getElementById('tilt')
@@ -274,5 +274,5 @@ setTimeout(() => {
 			el.style.transform = 'perspective(500px) scale(1.1) rotateX(0) rotateY(0)'
 		})
 	}	
-}, 1000);
+});
 /*Image Tilt Effect END*/
