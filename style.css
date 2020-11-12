@@ -12,6 +12,10 @@
   color: #0B0A07;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -44,6 +48,20 @@ button:hover {
 
 body {
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
+  background-image: url("assets/NY.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .parallax {
@@ -155,34 +173,6 @@ body {
   border-radius: 50px;
 }
 
-.hero {
-  -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
-          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
-  position: relative;
-  height: 100vh;
-  min-height: 656px;
-  max-height: 826px;
-  background-image: url("assets/herobg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-transition: height 1s ease-out;
-  transition: height 1s ease-out;
-}
-
-.hero::after {
-  content: '\f103';
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: #FFFFFF;
-  -webkit-animation: arrowDown 2s ease-in-out forwards infinite;
-          animation: arrowDown 2s ease-in-out forwards infinite;
-}
-
 .topnav-icon-container {
   width: 80px;
   height: 100%;
@@ -209,7 +199,7 @@ body {
 }
 
 .topnav {
-  position: relative;
+  position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -217,9 +207,11 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 80px;
+  width: 100%;
   top: -80px;
   -webkit-transition: top 1s ease-out;
   transition: top 1s ease-out;
+  z-index: 100;
 }
 
 .topnav .topnav-logo {
@@ -344,6 +336,34 @@ body {
           box-shadow: none;
 }
 
+.hero {
+  -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  height: 100vh;
+  min-height: 656px;
+  max-height: 826px;
+  background-image: url("assets/herobg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transition: height 1s ease-out;
+  transition: height 1s ease-out;
+}
+
+.hero::after {
+  content: '\f103';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  -webkit-animation: arrowDown 2s ease-in-out forwards infinite;
+          animation: arrowDown 2s ease-in-out forwards infinite;
+}
+
 .hero-intro-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -358,7 +378,7 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   padding-bottom: 5rem;
-  height: calc(100% - 80px);
+  height: calc(100% + 80px);
 }
 
 .hero-intro-container > .hero-intro {
@@ -468,6 +488,7 @@ body {
 }
 
 .we-are-curblum {
+  --translateY: 0px;
   -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
   position: relative;
@@ -479,10 +500,8 @@ body {
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
-  -webkit-transition: -webkit-transform 0.1s linear;
-  transition: -webkit-transform 0.1s linear;
-  transition: transform 0.1s linear;
-  transition: transform 0.1s linear, -webkit-transform 0.1s linear;
+  -webkit-transform: translateY(var(--translateY));
+          transform: translateY(var(--translateY));
 }
 
 .we-are-curblum > div {
@@ -712,15 +731,12 @@ body {
   color: #0B0A07;
 }
 
-.fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -100;
-  background-image: url("assets/NY.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.mover {
+  width: 50px;
+  height: 50px;
+  background: red;
+  position: absolute;
+  border-radius: 50px;
+  left: var(--mouse-x);
+  top: var(--mouse-y);
 }

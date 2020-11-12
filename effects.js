@@ -37,8 +37,6 @@ ELEMENTS.forEach((element, index) => {
 });
 /*Button Hover Effects END*/
 /*Mobile Menu Icon START*/
-var icon_1 = document.getElementById("i1");
-var mobileNav = document.getElementById("mobileNav");
 var topLine_1 = document.getElementById("top-line-1");
 var middleLine_1 = document.getElementById("middle-line-1");
 var bottomLine_1 = document.getElementById("bottom-line-1");
@@ -184,7 +182,7 @@ function closeMenuAnimation_1() {
 }
 
 ///Main Function
-function main() {
+function changeIcon() {
 	if ( state_1 === "menu" ) {
   	openMenuAnimation_1();
   	state_1 = "arrow";
@@ -197,20 +195,6 @@ function main() {
 		arrowAppearComplete_1 = false;
   }
 }
-
-///Events
-icon_1.addEventListener( "click", ()=> {
-	if (!icon_1.classList.contains("disabled")) {
-		main()
-	}
-});
-mobileNav.addEventListener( "click", (e)=> {
-	if (icon_1.classList.contains("disabled") == false) {
-		if (e.target == document.getElementById("mobileNav")) {
-			main();
-		}
-	}
-});
 /*Mobile Menu Icon END*/
 /*Image Tilt Effect START*/
 window.addEventListener('load', function() { 
