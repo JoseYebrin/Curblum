@@ -11,7 +11,7 @@
     ></script>
     <title>Curblum Web Services</title>
   </head>
-  <body>
+  <body class="parallax">
     <div id="mobileNav" class="mobile-nav-container">
       <ul class="mobile-nav lightgreen">
         <li>
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="we-are-curblum">
+    <div class="we-are-curblum parallax">
       <div class="we-are-curblum-languages">
         <h3>
           Let's create your
@@ -379,6 +379,7 @@
       </div>
     </div>
     <div style="height: 400px"></div>
+    <div class="fixed"></div>
 
     <script src="ajs.js"></script>
     <script src="effects.js"></script>
@@ -470,6 +471,7 @@
           let heroH = $(".hero").height();
           let bottomScroll = this.scrollY + windowH;
           if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
+            console.log("hi");
             let mult = 0.2;
             if (windowH > 1100) {
               mult = 0.1; //Slower translate for bigger screens
