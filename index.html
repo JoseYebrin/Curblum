@@ -11,7 +11,7 @@
     ></script>
     <title>Curblum Web Services</title>
   </head>
-  <body class="parallax">
+  <body>
     <div id="mobileNav" class="mobile-nav-container">
       <ul class="mobile-nav lightgreen">
         <li>
@@ -470,11 +470,14 @@
           let windowH = $(window).height();
           let heroH = $(".hero").height();
           let bottomScroll = this.scrollY + windowH;
-          if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
-            console.log("hi");
+          if (
+            bottomScroll % 5 === 0 && //5 times less updates
+            bottomScroll > heroH &&
+            bottomScroll < windowH + heroH
+          ) {
             let mult = 0.2;
             if (windowH > 1100) {
-              mult = 0.1; //Slower translate for bigger screens
+              mult = 0.1; //Slower translate for larger screens
             }
             let translateY = (bottomScroll - heroH) * mult;
             $(".we-are-curblum").css({
