@@ -15,7 +15,7 @@
     <div id="mobileNav" class="mobile-nav-container">
       <ul class="mobile-nav lightgreen">
         <li>
-          <a href="#" class="mobile-nav-item">Home</a>
+          <a id="asdf" href="#home" class="mobile-nav-item">Home</a>
         </li>
         <li>
           <a href="#" class="mobile-nav-item">Services</a>
@@ -41,7 +41,7 @@
       </div>
       <ul class="topnav-list lightgreen">
         <li>
-          <a id="1" href="#" class="topnav-item"><p>Home</p></a>
+          <a id="1" href="#home" class="topnav-item"><p>Home</p></a>
         </li>
         <li>
           <a id="2" href="#" class="topnav-item"><p>Services</p></a>
@@ -58,7 +58,7 @@
       </ul>
       <div id="topNavMarker" class="topnav-marker"></div>
     </nav>
-    <div class="hero">
+    <div id="home" class="hero">
       <div id="heroContent" class="hero-intro-container container">
         <div class="hero-intro">
           <h2 class="hero-intro-text-b">We Build</h2>
@@ -393,6 +393,23 @@
           mobileIcon.addClass("disabled");
           changeIcon();
           mobileNav.toggle();
+          if (mobileNav.is(":visible")) {
+            $(".mobile-nav-item").css({
+              opacity: 1,
+              transform: "translateX(0)",
+            });
+            setTimeout(() => {
+              $(".mobile-nav-item").css({
+                pointerEvents: "auto",
+              });
+            }, 500);
+          } else {
+            $(".mobile-nav-item").css({
+              opacity: 0,
+              transform: "translateX(20px)",
+              pointerEvents: "none",
+            });
+          }
           setTimeout(() => {
             mobileIcon.removeClass("disabled");
           }, 500);
@@ -423,6 +440,9 @@
           }
         );
         //Mobilenav
+        $(".mobile-nav-item").on("click", function () {
+          mobileNavFn();
+        });
         mobileIcon.on("click", function () {
           if (!$(this).hasClass("disabled")) {
             mobileNavFn();
@@ -451,7 +471,7 @@
         window.onscroll = function (e) {
           //We-are-Curblum transition Y effect
           let windowH = $(window).height();
-          let heroH = $(".hero").height();
+          let heroH = $("#home").height();
           let bottomScroll = this.scrollY + windowH;
           if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
             let mult = 0.2;
