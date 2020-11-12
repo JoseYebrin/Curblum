@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;0,500;0,600;0,900;1,400;1,500;1,600;1,900&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&display=swap');
 
 @import "./variables";
+
+::selection {
+  background-color: $main;
+  color: $black;
+}
 
 *, *::before, *::after {
   margin: 0;
@@ -24,10 +30,41 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url("assets/NY.jpg");
+}
+
+.turquoise {
+  color: $turquoise;
+}
+
+.lightgreen {
+  color: $main;
+}
+
 .container {
   width: 90%;
-  // max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
+}
+
+.btn-default {
+  background-color: $turquoise;
+  color: $lightBlack;
+  font-weight: bold;
+  padding: 14px 42px;
+  border-radius: 50px;
+  font-size: 1.6rem;
 }
 
 /*BUTTON EFFECT START*/
@@ -93,7 +130,6 @@ a {
     padding-top: 20px;
     right: 0;
     background-color: $white;
-    color: $main;
     font-weight: bold;
 
     & .mobile-nav-item {
@@ -116,6 +152,7 @@ a {
 }
 
 .hero {
+  @include bigShadow();
   position: relative;
   height: 100vh;
   min-height: 656px;
@@ -190,12 +227,24 @@ a {
     width: 116px;
     background-color: $main;
     transition: all 0.15s ease-out;
+
+    &.topnav-marker-first {
+      left: calc(100% - 672px);
+      width: 137px;
+    }
+    &.topnav-marker-second {
+      left: calc(100% - 535px);
+      width: 161px;
+    }
+    &.topnav-marker-third {
+      left: calc(100% - 374px);
+      width: 184px;
+    }
   }
 }
 
 .topnav-list {
   display: none;
-  color: $main;
   font-weight: bold;
 
   &>li {
@@ -264,63 +313,64 @@ a {
 
   &>.hero-intro {
     color: $white;
-    &>.hero-intro-text-b {
-      position: relative;
-      left: -100vw;
-      font-weight: 800;
-      font-size: 3rem;
-      letter-spacing: 2px;
-      line-height: 1;
-      white-space: nowrap;
-      transition: left 0.3s ease-out;
-    }
-    &>.hero-intro-text-s {
-      opacity: 0;
-      padding: 10px 0;
-      color: darken($white, 20%);
-      transition: opacity 1s ease-out;
-    }
-    &>.hero-social {
-      opacity: 0;
-      padding-top: 20px;
-      transition: opacity 1s ease-out;
+  }
+}
 
-      &>a{
-        display: inline-block;
-        font-size: 2rem;
-        padding: 0 10px;
-        transition: all 0.2s ease-out;
+.hero-intro-text-b {
+  position: relative;
+  left: -100vw;
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: left 0.3s ease-out;
+}
+.hero-intro-text-s {
+  opacity: 0;
+  padding: 10px 0;
+  color: darken($white, 20%);
+  transition: opacity 1s ease-out;
+}
+.hero-social {
+  opacity: 0;
+  padding-top: 20px;
+  transition: opacity 1s ease-out;
 
-        &>i{
-          font-size: 2rem;
-        }
-        &:active {
-          transform: rotate(-10deg);
-        }
-      }
-      & #instagram:active {
-        color: #ff5b91;
-      }
-      & #twitter:active {
-        color: #00acee;
-      }
-      & #facebook:active {
-        color: #3b5998;
-      }
+  &>a{
+    display: inline-block;
+    font-size: 2rem;
+    padding: 0 10px;
+    transition: all 0.2s ease-out;
+
+    &>i{
+      font-size: 2rem;
+    }
+    &:active {
+      transform: rotate(-10deg);
     }
   }
+  & #instagram:active {
+    color: #ff5b91;
+  }
+  & #twitter:active {
+    color: #00acee;
+  }
+  & #facebook:active {
+    color: #3b5998;
+  }
+}
 
-  &>.hero-img {
-    opacity: 0;
-    position: relative;
-    left: 100px;
-    margin: 20px 0;
-    transition: box-shadow 0.1s, transform 0.1s, left 1s, opacity 1s;
+.hero-img {
+  opacity: 0;
+  position: relative;
+  left: 100px;
+  margin: 20px 0;
+  transition: box-shadow 0.1s, transform 0.1s, left 1s, opacity 1s;
 
-    &>img {
-      width: 100%;
-      max-width: 300px;
-    }
+  &>img {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -335,6 +385,93 @@ a {
 
   100% {
     transform: translateY(-20px);
+  }
+}
+.we-are-curblum {
+  @include bigShadow();
+  position: relative;
+  background-color: $lightBlack;
+  background-image: url("assets/6.gif");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  border: 1px solid $white;
+  color: $white;
+  padding: 4rem 2rem;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(40,40,40, 0.8);
+    z-index: -1;
+  }
+}
+.we-are-curblum-languages {
+  &>h3, &>h3>span {
+    text-align: center;
+    font-family: "Anton", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    line-height: 1.2;
+    font-size: 1.6rem;
+  }
+  &>h3>span {
+    font-size: 1.8rem;
+  }
+  &>.languages-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2.4rem 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  & i {
+    @include flexCenter(row);
+    margin: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    opacity: 0.5;
+    transition: all 0.1s ease-out;
+    &>svg {
+      width: 40px;
+      height: 40px;
+    }
+    &:hover{
+      transform: scale(1.3);
+      opacity: 1;
+    }
+  }
+}
+.we-are-curblum-get-started {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &>div:nth-child(1) {
+    & * {
+      font-size: 1.3rem;
+    }
+  }
+  &>div:nth-child(2) {
+    text-align: center;
+    margin-top: 4rem;
+
+    &>button:active {
+      background-color: darken($turquoise, 15%);
+    }
   }
 }
 
@@ -383,10 +520,60 @@ a {
       }
     }
   }
+  .we-are-curblum-languages {
+    &>h3 {
+      font-size: 2rem;
+    }
+    &>h3>span {
+      font-size: 2.4rem;
+    }
+    &>.languages-icons {
+      padding: 4rem 1rem;
+    }
+    & i {
+      margin: 14px;
+    }
+  }
+  .we-are-curblum-get-started {
+    flex-direction: row;
+    &>div:nth-child(1) {
+      width: 60%;
+    }
+    &>div:nth-child(2) {
+      width: 40%;
+      margin: auto;
+      text-align: right;
+      &>button {
+        transition: box-shadow 0.1s ease-out;
+        &:hover {
+          box-shadow: 0px 0px 30px rgba(255,255,255, 0.6);
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1800px) {
   .hero-intro-container>.hero-intro>.hero-intro-text-b {
     font-size: 8rem;
   }
+}
+
+.t0 {
+  top: 0;
+}
+.l0 {
+  left: 0;
+}
+.o1 {
+  opacity: 1;
+}
+
+.tippy-box{
+  background-color: $black;
+  color: $white;
+}
+
+.tippy-arrow::before {
+  color: $black;
 }
