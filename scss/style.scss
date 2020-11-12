@@ -42,6 +42,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-image: url("assets/NY.jpg");
+  overflow-x: hidden;
 }
 
 .turquoise {
@@ -412,7 +413,12 @@ body {
     height: 100%;
     border-radius: 10px;
     background-color: rgba(40,40,40, 0.8);
-    z-index: -1;
+    z-index: 0;
+  }
+
+  &>div {
+    position: relative;
+    z-index: 1;
   }
 }
 .we-are-curblum-languages {

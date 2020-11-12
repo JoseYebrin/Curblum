@@ -3,11 +3,15 @@
 /* Sass Mixins */
 
 @mixin shadow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 
 @mixin bottomShadow {
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.17);
+}
+
+@mixin bigShadow {
+  box-shadow: 0px 0px 30px rgba(0,0,0, 0.6)
 }
 
 @mixin notSelectable {
@@ -26,8 +30,9 @@
 /* Sass Variables */
 
 $main: #0EC888;
-$turquoise: #0ACDBC;
+$turquoise: #33f1ff;
 $blue: #008AA4;
 $darkGreen: #38A497;
 $white: #FFFFFF;
 $black: #0B0A07;
+$lightBlack: #2c2c2c;
