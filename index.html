@@ -389,6 +389,7 @@
         const topNavMarker = $("#topNavMarker");
         const topNav = $("#topNav");
         var oldScroll = 0;
+        var translateX = 0;
         $("#1").hover(
           function () {
             topNavMarker.addClass("topnav-marker-first");
@@ -455,21 +456,25 @@
             }
           );
         }
+        // window.onscroll = function (e) {
+        //   // console.log(oldScroll + " + " + this.scrollY);
+        //   if (this.scrollY > oldScroll) {
+        //     //downscroll
+        //   } else {
+        //     //upscroll
+        //   }
+        //   oldScroll = this.scrollY;
+        // };
         window.onscroll = function (e) {
-          // console.log(oldScroll + " + " + this.scrollY);
-          if (this.scrollY > oldScroll) {
-            //downscroll
-          } else {
-            //upscroll
-          }
-          oldScroll = this.scrollY;
-        };
-        window.onscroll = function (e) {
-          let Wheight = $(window).height();
-          let Hheight = $(".hero").height();
-          let scroll = this.scrollY + Wheight;
-          if (scroll > Hheight && scroll < Wheight + Hheight) {
-            let translateY = (scroll - Hheight) * 0.2;
+          let windowH = $(window).height();
+          let heroH = $(".hero").height();
+          let bottomScroll = this.scrollY + windowH;
+          if (bottomScroll > heroH && scroll < windowH + heroH) {
+            let mult = 0.2;
+            if (windowH > 1100) {
+              mult = 0.1; //Slower translate for bigger screens
+            }
+            let translateY = (bottomScroll - heroH) * mult;
             $(".we-are-curblum").css({
               transform: `translateY(-${translateY}px)`,
             });
