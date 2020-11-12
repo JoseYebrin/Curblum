@@ -470,11 +470,7 @@
           let windowH = $(window).height();
           let heroH = $(".hero").height();
           let bottomScroll = this.scrollY + windowH;
-          if (
-            bottomScroll % 5 === 0 && //5 times less updates
-            bottomScroll > heroH &&
-            bottomScroll < windowH + heroH
-          ) {
+          if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
             let mult = 0.2;
             if (windowH > 1100) {
               mult = 0.1; //Slower translate for larger screens
