@@ -91,6 +91,19 @@ body::before {
   font-size: 1.6rem;
 }
 
+.tippy-box {
+  background-color: #0B0A07;
+  color: #FFFFFF;
+}
+
+.tippy-content {
+  font-size: 14px;
+}
+
+.tippy-arrow::before {
+  color: #0B0A07;
+}
+
 /*BUTTON EFFECT START*/
 .HOVER {
   --width: 100%;
@@ -245,13 +258,13 @@ body::before {
 }
 
 .topnav > .topnav-marker.topnav-marker-first {
-  left: calc(100% - 672px);
+  left: calc(100% - 683px);
   width: 137px;
 }
 
 .topnav > .topnav-marker.topnav-marker-second {
-  left: calc(100% - 535px);
-  width: 161px;
+  left: calc(100% - 546px);
+  width: 172px;
 }
 
 .topnav > .topnav-marker.topnav-marker-third {
@@ -354,8 +367,8 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-transition: height 1s ease-out;
-  transition: height 1s ease-out;
+  -webkit-transition: height 0.8s ease-out;
+  transition: height 0.8s ease-out;
 }
 
 .hero::after {
@@ -382,14 +395,23 @@ body::before {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-bottom: 5rem;
   height: calc(100% + 80px);
 }
 
 .hero-intro-container > .hero-intro {
   color: #FFFFFF;
+}
+
+@media only screen and (min-height: 750px) {
+  .hero-intro-container {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
 }
 
 .hero-intro-text-b {
@@ -509,6 +531,7 @@ body::before {
   margin: 0 auto;
   -webkit-transform: translateY(var(--translateY));
           transform: translateY(var(--translateY));
+  z-index: 20;
 }
 
 .we-are-curblum > div {
@@ -578,7 +601,7 @@ body::before {
   opacity: 1;
 }
 
-.we-are-curblum-get-started {
+.we-are-curblum-estimate {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -590,17 +613,205 @@ body::before {
   margin: 0 auto;
 }
 
-.we-are-curblum-get-started > div:nth-child(1) * {
-  font-size: 1.3rem;
+.we-are-curblum-estimate > div:nth-child(1) * {
+  font-size: 1.2rem;
 }
 
-.we-are-curblum-get-started > div:nth-child(2) {
+.we-are-curblum-estimate > div:nth-child(2) {
   text-align: center;
   margin-top: 4rem;
 }
 
-.we-are-curblum-get-started > div:nth-child(2) > button:active {
+.we-are-curblum-estimate > div:nth-child(2) > button {
+  padding: 14px 28px;
+  font-size: 1.3rem;
+}
+
+.we-are-curblum-estimate > div:nth-child(2) > button:active {
   background-color: #00d6e6;
+}
+
+.packages {
+  --translateY: 0px;
+  margin-top: 40px;
+  text-align: center;
+  -webkit-transform: translateY(var(--translateY));
+          transform: translateY(var(--translateY));
+}
+
+.packages > h4 {
+  color: #2c2c2c;
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+
+.card {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  background-color: #FEFEFE;
+  border-radius: 10px;
+  border: 1px solid #0EC888;
+  padding: 16px 0;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+.card.slick-current {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.card > .card-title {
+  color: #2c2c2c;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.card > .card-price {
+  color: #0EC888;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.card > .card-description {
+  margin: 16px 0;
+  padding: 0 20px;
+  text-align: left;
+  font-size: 0.8rem;
+  height: 150px;
+  overflow: auto;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.card > .card-btn {
+  background-color: #0EC888;
+  color: #FFFFFF;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 6px 20px;
+}
+
+.slick-carousel > .slick-dots {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.slick-carousel > .slick-dots li {
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.slick-carousel > .slick-dots li.slick-active {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slick-carousel > .slick-dots li:last-of-type {
+  margin-right: 0;
+}
+
+.slick-carousel .card {
+  margin: 40px;
+  max-width: 450px;
+}
+
+.slick-carousel .card > .card-btn:active {
+  background-color: #0b9868;
+}
+
+@media only screen and (min-width: 360px) {
+  .slick-carousel .card {
+    margin: 40px 60px;
+  }
+}
+
+@media only screen and (min-width: 410px) {
+  .slick-carousel .card {
+    margin: 40px 80px;
+  }
+}
+
+@media only screen and (min-width: 460px) {
+  .slick-carousel .card {
+    margin: 40px 100px;
+  }
+}
+
+@media only screen and (min-width: 530px) {
+  .slick-carousel .card {
+    margin: 40px 130px;
+  }
+}
+
+.carousel {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.carousel > .card {
+  margin: 10px 0;
+  max-width: 300px;
+}
+
+.carousel > .card:first-of-type {
+  margin-top: 30px;
+}
+
+.carousel > .card > .card-btn:hover {
+  background-color: #0b9868;
+}
+
+@media only screen and (min-width: 900px) {
+  .carousel {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-top: 20px;
+  }
+  .carousel > .card {
+    margin: 10px 30px;
+  }
+  .carousel > .card:first-of-type {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 580px) {
+  .slick-carousel {
+    display: none;
+  }
+  .carousel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 @media only screen and (min-width: 800px) {
@@ -667,27 +878,27 @@ body::before {
   .we-are-curblum-languages i {
     margin: 14px;
   }
-  .we-are-curblum-get-started {
+  .we-are-curblum-estimate {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .we-are-curblum-get-started > div:nth-child(1) {
+  .we-are-curblum-estimate > div:nth-child(1) {
     width: 60%;
   }
-  .we-are-curblum-get-started > div:nth-child(2) {
+  .we-are-curblum-estimate > div:nth-child(2) {
     width: 40%;
     margin: auto;
     text-align: right;
   }
-  .we-are-curblum-get-started > div:nth-child(2) > button {
+  .we-are-curblum-estimate > div:nth-child(2) > button {
     -webkit-transition: -webkit-box-shadow 0.1s ease-out;
     transition: -webkit-box-shadow 0.1s ease-out;
     transition: box-shadow 0.1s ease-out;
     transition: box-shadow 0.1s ease-out, -webkit-box-shadow 0.1s ease-out;
   }
-  .we-are-curblum-get-started > div:nth-child(2) > button:hover {
+  .we-are-curblum-estimate > div:nth-child(2) > button:hover {
     -webkit-box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);
             box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);
   }
@@ -731,23 +942,4 @@ body::before {
 
 .o1 {
   opacity: 1;
-}
-
-.tippy-box {
-  background-color: #0B0A07;
-  color: #FFFFFF;
-}
-
-.tippy-arrow::before {
-  color: #0B0A07;
-}
-
-.mover {
-  width: 50px;
-  height: 50px;
-  background: red;
-  position: absolute;
-  border-radius: 50px;
-  left: var(--mouse-x);
-  top: var(--mouse-y);
 }

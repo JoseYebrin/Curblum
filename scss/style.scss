@@ -9,6 +9,10 @@
   color: $black;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -39,10 +43,25 @@ button:hover {
 }
 
 body {
-  background-attachment: fixed;
-  background-size: cover;
-  background-image: url("assets/NY.jpg");
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
+  background-image: url("assets/NY.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.parallax {
+  background-attachment: scroll;
 }
 
 .turquoise {
@@ -66,6 +85,17 @@ body {
   padding: 14px 42px;
   border-radius: 50px;
   font-size: 1.6rem;
+}
+//Customize Tippy
+.tippy-box{
+  background-color: $black;
+  color: $white;
+}
+.tippy-content {
+  font-size: 14px;
+}
+.tippy-arrow::before {
+  color: $black;
 }
 
 /*BUTTON EFFECT START*/
@@ -129,15 +159,18 @@ body {
     width: 200px;
     height: 100%;
     padding-top: 20px;
-    right: 0;
     background-color: $white;
     font-weight: bold;
 
     & .mobile-nav-item {
+      pointer-events: none;
       display: inline-block;
       font-size: 1.3rem;
       padding: 5px;
       margin: 5px 70px 5px 15px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.6s ease-out;
     }
 
     & .get-started {
@@ -152,31 +185,8 @@ body {
   }
 }
 
-.hero {
-  @include bigShadow();
-  position: relative;
-  height: 100vh;
-  min-height: 656px;
-  max-height: 826px;
-  background-image: url("assets/herobg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &::after {
-    content: '\f103';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    color: $white;
-    animation: arrowDown 2s ease-in-out forwards infinite;
-  }
-}
-
 .topnav-icon-container {
+  pointer-events: auto;
   width: 80px;
   height: 100%;
   padding: 0 20px;
@@ -197,18 +207,21 @@ body {
 	stroke-linecap: round;
   stroke-linejoin: round;
   cursor: pointer;
-  z-index: 100;
 }
 
 .topnav {
-  position: relative;
+  pointer-events: none;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   height: 80px;
+  width: 100%;
   top: -80px;
   transition: top 1s ease-out;
+  z-index: 100;
 
   & .topnav-logo {
+    pointer-events: auto;
     width: 80px;
     background-color: $white;
     border-radius: 0 0 50px 0;
@@ -230,12 +243,12 @@ body {
     transition: all 0.15s ease-out;
 
     &.topnav-marker-first {
-      left: calc(100% - 672px);
+      left: calc(100% - 683px);
       width: 137px;
     }
     &.topnav-marker-second {
-      left: calc(100% - 535px);
-      width: 161px;
+      left: calc(100% - 546px);
+      width: 172px;
     }
     &.topnav-marker-third {
       left: calc(100% - 374px);
@@ -304,16 +317,47 @@ body {
   }
 }
 
+.hero {
+  @include bigShadow();
+  position: relative;
+  height: 100vh;
+  min-height: 656px;
+  max-height: 826px;
+  background-image: url("assets/herobg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: height 0.8s ease-out;
+
+  &::after {
+    content: '\f103';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: $white;
+    animation: arrowDown 2s ease-in-out forwards infinite;
+  }
+}
+
 .hero-intro-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   padding-bottom: 5rem;
-  height: calc(100% - 80px);
+  height: calc(100% + 80px);
 
   &>.hero-intro {
     color: $white;
+  }
+}
+
+@media only screen and (min-height: 750px) {
+  .hero-intro-container {
+    justify-content: space-evenly;
   }
 }
 
@@ -389,13 +433,10 @@ body {
   }
 }
 .we-are-curblum {
+  --translateY: 0px;
   @include bigShadow();
   position: relative;
   background-color: $lightBlack;
-  background-image: url("assets/6.gif");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
   border-radius: 10px;
   border: 1px solid $white;
   color: $white;
@@ -403,18 +444,8 @@ body {
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
-
-  &::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    background-color: rgba(40,40,40, 0.8);
-    z-index: 0;
-  }
+  transform: translateY(var(--translateY));
+  z-index: 20;
 
   &>div {
     position: relative;
@@ -438,7 +469,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 2.4rem 1rem;
+    padding: 2.4rem 0;
     max-width: 500px;
     margin: 0 auto;
   }
@@ -460,7 +491,7 @@ body {
     }
   }
 }
-.we-are-curblum-get-started {
+.we-are-curblum-estimate {
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -468,24 +499,175 @@ body {
 
   &>div:nth-child(1) {
     & * {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
   &>div:nth-child(2) {
     text-align: center;
     margin-top: 4rem;
 
-    &>button:active {
-      background-color: darken($turquoise, 15%);
+    &>button {
+      padding: 14px 28px;
+      font-size: 1.3rem;
+      &:active {
+        background-color: darken($turquoise, 15%);
+      }
     }
   }
 }
 
-@media screen and (min-width: 800px) {
+.packages {
+  --translateY: 0px;
+  margin-top: 40px;
+  text-align: center;
+  transform: translateY(var(--translateY));
+
+  &>h4 {
+    color: $lightBlack;
+    font-weight: 800;
+    font-size: 1.6rem;
+  }
+}
+.card {
+  @include shadow();
+  background-color: #FEFEFE;
+  border-radius: 10px;
+  border: 1px solid $main;
+  padding: 16px 0;
+  transition: transform 0.3s ease-out;
+
+  &.slick-current {
+    transform: scale(1.1);
+  }
+
+  &>.card-title {
+    color: $lightBlack;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  &>.card-price {
+    color: $main;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  &>.card-description {
+    margin: 16px 0;
+    padding: 0 20px;
+    text-align: left;
+    font-size: 0.8rem;
+    height: 150px;
+    overflow: auto;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+  }
+  &>.card-btn {
+    background-color: $main;
+    color: $white;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 6px 20px;
+  }
+}
+.slick-carousel {
+  &>.slick-dots {
+    @include flexCenter(row);
+    & li {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50px;
+      background-color: rgba(0,0,0,0.4);
+
+      &.slick-active {
+        background-color: rgba(0,0,0,0.7);
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+  & .card {
+    margin: 40px;
+    max-width: 450px;
+
+    &>.card-btn:active {
+      background-color: darken($main, 10%);
+    }
+  }
+}
+@media only screen and (min-width: 360px) {
+  .slick-carousel .card {
+    margin: 40px 60px;
+  }
+}
+@media only screen and (min-width: 410px) {
+  .slick-carousel .card {
+    margin: 40px 80px;
+  }
+}
+@media only screen and (min-width: 460px) {
+  .slick-carousel .card {
+    margin: 40px 100px;
+  }
+}
+@media only screen and (min-width: 530px) {
+  .slick-carousel .card {
+    margin: 40px 130px;
+  }
+}
+
+.carousel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1000px;
+
+  &>.card {
+    margin: 10px 0;
+    max-width: 300px;
+    &:first-of-type {
+      margin-top: 30px;
+    }
+    &>.card-btn:hover {
+      background-color: darken($main, 10%);
+    }
+  }
+}
+@media only screen and (min-width: 900px) {
+  .carousel {
+    flex-direction: row;
+    margin-top: 20px;
+
+    &>.card {
+      margin: 10px 30px;
+      &:first-of-type {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 580px) {
+  .slick-carousel {
+    display: none;
+  }
+  .carousel {
+    display: flex;
+  }
+}
+
+//START media queries
+@media only screen and (min-width: 800px) {
+  .mobile-nav-container {
+    visibility: hidden;
+  }
   .topnav-icon-container {
     display: none;
   }
   .topnav {
+    pointer-events: auto;
     background-color: $white;
 
     &>.topnav-marker {
@@ -540,7 +722,7 @@ body {
       margin: 14px;
     }
   }
-  .we-are-curblum-get-started {
+  .we-are-curblum-estimate {
     flex-direction: row;
     &>div:nth-child(1) {
       width: 60%;
@@ -559,12 +741,34 @@ body {
   }
 }
 
-@media screen and (min-width: 1800px) {
+@media only screen and (min-width: 1800px) {
   .hero-intro-container>.hero-intro>.hero-intro-text-b {
     font-size: 8rem;
   }
 }
 
+@media only screen and (min-device-width: 1100px) {
+  .parallax {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .we-are-curblum {
+    background-image: url("assets/6.gif");
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background-color: rgba(40,40,40, 0.8);
+      z-index: 0;
+    }
+  }
+}
+//Classes for animations (Must be at last)
 .t0 {
   top: 0;
 }
@@ -573,13 +777,4 @@ body {
 }
 .o1 {
   opacity: 1;
-}
-
-.tippy-box{
-  background-color: $black;
-  color: $white;
-}
-
-.tippy-arrow::before {
-  color: $black;
 }
