@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Curblum - Requests</title>
+    <style>
+      tr {
+        height: 40px;
+      }
+      td {
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <table id="table"></table>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $.get("requests.json", function (json) {
+          let requests = json.requests;
+          let html = "";
+          for (let i = 0; i < requests.length; i++) {
+            html += `
+            <tr>
+              <td>${requests[i].name}</td>
+              <td>${requests[i].mail}</td>
+              <td>${requests[i].phone}</td>
+              <td>${requests[i].details}</td>
+            </tr>
+            `;
+          }
+          $("#table").html(html);
+        });
+      });
+    </script>
+  </body>
+</html>
