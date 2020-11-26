@@ -18,6 +18,7 @@
     <title>Curblum Web Services</title>
   </head>
   <body>
+    <div id="loading"><img src="assets/loading.gif" alt="loading" /></div>
     <div id="mobileNav" class="mobile-nav-container">
       <ul class="mobile-nav lightgreen">
         <li>
@@ -709,7 +710,7 @@
             maxlength="1200"
           ></textarea>
           <span id="errorTxt" class="error-text"></span>
-          <button>Contact Our Team</button>
+          <button id="contactBtn">Contact Our Team</button>
         </div>
       </form>
     </div>
@@ -726,276 +727,286 @@
     <script src="effects.js"></script>
     <script>
       $(document).ready(function () {
-        const mobileIcon = $("#i1");
-        const mobileNav = $("#mobileNav");
-        const topNavMarker = $("#topNavMarker");
-        const topNav = $("#topNav");
-        var oldScroll = 0;
-        function sanitize(s) {
-          s = s.replace(/\s\s+/g, " ");
-          s = s.trim();
-          return s;
-        }
-        function mobileNavFn() {
-          mobileIcon.addClass("disabled");
-          changeIcon();
-          mobileNav.toggle();
-          if (mobileNav.is(":visible")) {
-            $(".mobile-nav-item").css({
-              opacity: 1,
-              transform: "translateX(0)",
-            });
-            setTimeout(() => {
-              $(".mobile-nav-item").css({
-                pointerEvents: "auto",
-              });
-            }, 500);
-          } else {
-            $(".mobile-nav-item").css({
-              opacity: 0,
-              transform: "translateX(20px)",
-              pointerEvents: "none",
-            });
-          }
-          setTimeout(() => {
-            mobileIcon.removeClass("disabled");
-          }, 500);
-        }
-        function translatePackages() {
-          let windowH = $(window).height();
-          let mult = 0.2;
-          if (windowH > 1100) {
-            mult = 0.1; //Slower translate for larger screens
-          }
-          let tY = windowH * mult - 40;
-          document
-            .getElementById("packages")
-            .style.setProperty("--mt", "-" + tY + "px");
-        }
-        //Topnav marker
-        $("#1").hover(
-          function () {
-            topNavMarker.addClass("topnav-marker-first");
-          },
-          function () {
-            topNavMarker.removeClass("topnav-marker-first");
-          }
-        );
-        $("#2").hover(
-          function () {
-            topNavMarker.addClass("topnav-marker-second");
-          },
-          function () {
-            topNavMarker.removeClass("topnav-marker-second");
-          }
-        );
-        $("#3").hover(
-          function () {
-            topNavMarker.addClass("topnav-marker-third");
-          },
-          function () {
-            topNavMarker.removeClass("topnav-marker-third");
-          }
-        );
-        //Mobilenav
-        $(".mobile-nav-item").on("click", function () {
-          mobileNavFn();
-        });
-        mobileIcon.on("click", function () {
-          if (!$(this).hasClass("disabled")) {
-            mobileNavFn();
-          }
-        });
-        mobileNav.on("click", function (e) {
-          if (
-            !mobileIcon.hasClass("disabled") &&
-            e.target == document.getElementById("mobileNav")
-          ) {
-            mobileNavFn();
-          }
-        });
-        //Remove Img tilt effect for touch devices
-        if (!Modernizr.touchevents) {
-          $("#tilt").hover(
-            function () {
-              $(this).css({ boxShadow: "0px 0px 30px rgba(0,0,0, 0.6)" });
-            },
-            function () {
-              $(this).css({ boxShadow: "none" });
+        $("<img/>")
+          .attr("src", "assets/herobg.jpg")
+          .on("load", function () {
+            $(this).remove(); // prevent memory leaks
+            $("#loading").remove(); // remove loading gif
+            $("body").css({ overflowY: "auto" });
+            $("#home").css("background-image", 'url("assets/herobg.jpg")');
+            //START
+            const mobileIcon = $("#i1");
+            const mobileNav = $("#mobileNav");
+            const topNavMarker = $("#topNavMarker");
+            const topNav = $("#topNav");
+            var oldScroll = 0;
+            function sanitize(s) {
+              s = s.replace(/\s\s+/g, " ");
+              s = s.trim();
+              return s;
             }
-          );
-        }
-        //onscroll functions
-        window.onscroll = function (e) {
-          //We-are-Curblum transition Y effect
-          let windowH = $(window).height();
-          let heroH = $("#home").height();
-          let weAreCurblumH = $("#weAreCurblum").height();
-          let packagesH = $("#packages").height();
-          let contactFormH = $("#contactForm").height();
-          let bottomScroll = this.scrollY + windowH;
-          if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
-            let mult = 0.2;
-            if (windowH > 1100) {
-              mult = 0.1; //Slower translate for larger screens
-            }
-            let tY = (bottomScroll - heroH) * mult;
-            document
-              .getElementById("weAreCurblum")
-              .style.setProperty("--translateY", "-" + tY + "px");
-          }
-          //Fix for fast scrolling
-          if (this.scrollY > heroH) {
-            let mult = 0.2;
-            if (windowH > 1100) {
-              mult = 0.1; //Slower translate for larger screens
-            }
-            let tY = windowH * mult;
-            document
-              .getElementById("weAreCurblum")
-              .style.setProperty("--translateY", "-" + tY + "px");
-          }
-          //Show topnav on scrollup and hide on scrolldown
-          if (this.scrollY > oldScroll && !mobileNav.is(":visible")) {
-            topNav.removeClass("t0");
-          } else {
-            topNav.addClass("t0");
-          }
-          oldScroll = this.scrollY;
-          //Prevent GET STARTED hover animation if not on top of document
-          if (this.scrollY === 0) {
-            $("#4").addClass("HOVER");
-          } else {
-            $("#4").removeClass("HOVER");
-          }
-          //Animate Contact Form
-          if (
-            $("#contactForm").css("opacity") == 0 &&
-            bottomScroll > heroH + weAreCurblumH + packagesH + contactFormH / 2
-          ) {
-            $("#contactForm").css({ opacity: 1 });
-          }
-        };
-        //Reset Scroll values onload
-        $(window).scroll();
-
-        //Intro Animations
-        $(".hero-img").addClass("l0 o1");
-        topNav.addClass("t0");
-        setTimeout(() => {
-          $(".hero-intro-text-b:nth-child(3)").addClass("l0");
-          setTimeout(() => {
-            $(".hero-intro-text-b:nth-child(2)").addClass("l0");
-            setTimeout(() => {
-              $(".hero-intro-text-b:nth-child(1)").addClass("l0");
+            function mobileNavFn() {
+              mobileIcon.addClass("disabled");
+              changeIcon();
+              mobileNav.toggle();
+              if (mobileNav.is(":visible")) {
+                $(".mobile-nav-item").css({
+                  opacity: 1,
+                  transform: "translateX(0)",
+                });
+                setTimeout(() => {
+                  $(".mobile-nav-item").css({
+                    pointerEvents: "auto",
+                  });
+                }, 500);
+              } else {
+                $(".mobile-nav-item").css({
+                  opacity: 0,
+                  transform: "translateX(20px)",
+                  pointerEvents: "none",
+                });
+              }
               setTimeout(() => {
-                $(".hero-intro-text-s").addClass("o1");
-                $(".hero-social").addClass("o1");
-                topNav.css({ transition: "top 0.4s ease" });
-              }, 700);
-            }, 200);
-          }, 200);
-        }, 1000);
-        //TranslateY #packages to remove gap
-        translatePackages();
-        window.addEventListener("resize", function () {
-          translatePackages();
-        });
-        //Initialize Packages carousel for small devices
-        $("#slickCarousel").slick({
-          infinite: false,
-          arrows: false,
-          dots: true,
-          slidesToShow: 1,
-          customPaging: function (slider, i) {
-            var thumb = $(slider.$slides[i]).data();
-            return "";
-          },
-        });
-        $(".go-contact").click(function () {
-          location.href = "#contact";
-        });
-        //Contact Form
-        $("input").focus(function () {
-          let label = $(this).siblings("label");
-          label.css({
-            fontSize: "0.8rem",
-            top: "12px",
-            left: "10px",
-          });
-        });
-        $("input").blur(function () {
-          let label = $(this).siblings("label");
-          if ($(this).val() == "") {
-            label.css({
-              fontSize: "1.1rem",
-              top: "50%",
-              left: "20px",
-            });
-          }
-        });
-        //Validate Form
-        $("#contactForm").on("submit", function (e) {
-          e.preventDefault();
-
-          let name = sanitize($("#name").val());
-          let mail = sanitize($("#mail").val());
-          let phone = sanitize($("#phone").val());
-          let details = sanitize($("#details").val());
-          if (details == "") {
-            details = "Not Specified.";
-          }
-
-          let flag = true;
-          let errorTxt = "";
-
-          if (flag && name == "") {
-            errorTxt = "Name is a mandatory field";
-            flag = false;
-          } else if (flag && name.length < 5) {
-            errorTxt = "Name is too short";
-            flag = false;
-          } else if (flag && /\d/.test(name)) {
-            errorTxt = "Name is invalid";
-            flag = false;
-          } else if (flag && mail == "") {
-            errorTxt = "Email is a mandatory field";
-            flag = false;
-          } else if (flag && mail.length < 10) {
-            errorTxt = "Email is too short";
-            flag = false;
-          } else if (flag && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(mail)) {
-            errorTxt = "Email is invalid";
-            flag = false;
-          } else if (flag && phone == "") {
-            errorTxt = "Phone is a mandatory field";
-            flag = false;
-          } else if (flag && phone.length < 7) {
-            errorTxt = "Phone number is too short";
-            flag = false;
-          } else if (flag && !/^[\d\+]\d+$/.test(phone)) {
-            errorTxt = "Phone number is invalid";
-            flag = false;
-          }
-
-          $("#errorTxt").text(errorTxt);
-
-          if (flag) {
-            $.post(
-              "request.php",
-              { name: name, mail: mail, phone: phone, details: details },
-              function (response) {
-                $("#modal").html(response);
-                $("#modal").css({ visibility: "visible" });
+                mobileIcon.removeClass("disabled");
+              }, 500);
+            }
+            function translatePackages() {
+              let windowH = $(window).height();
+              let mult = 0.2;
+              if (windowH > 1100) {
+                mult = 0.1; //Slower translate for larger screens
+              }
+              let tY = windowH * mult - 40;
+              document
+                .getElementById("packages")
+                .style.setProperty("--mt", "-" + tY + "px");
+            }
+            //Topnav marker
+            $("#1").hover(
+              function () {
+                topNavMarker.addClass("topnav-marker-first");
+              },
+              function () {
+                topNavMarker.removeClass("topnav-marker-first");
               }
             );
-          }
-        });
+            $("#2").hover(
+              function () {
+                topNavMarker.addClass("topnav-marker-second");
+              },
+              function () {
+                topNavMarker.removeClass("topnav-marker-second");
+              }
+            );
+            $("#3").hover(
+              function () {
+                topNavMarker.addClass("topnav-marker-third");
+              },
+              function () {
+                topNavMarker.removeClass("topnav-marker-third");
+              }
+            );
+            //Mobilenav
+            $(".mobile-nav-item").on("click", function () {
+              mobileNavFn();
+            });
+            mobileIcon.on("click", function () {
+              if (!$(this).hasClass("disabled")) {
+                mobileNavFn();
+              }
+            });
+            mobileNav.on("click", function (e) {
+              if (
+                !mobileIcon.hasClass("disabled") &&
+                e.target == document.getElementById("mobileNav")
+              ) {
+                mobileNavFn();
+              }
+            });
+            //Remove Img tilt effect for touch devices
+            if (!Modernizr.touchevents) {
+              $("#tilt").hover(
+                function () {
+                  $(this).css({ boxShadow: "0px 0px 30px rgba(0,0,0, 0.6)" });
+                },
+                function () {
+                  $(this).css({ boxShadow: "none" });
+                }
+              );
+            }
+            //onscroll functions
+            window.onscroll = function (e) {
+              //We-are-Curblum transition Y effect
+              let windowH = $(window).height();
+              let heroH = $("#home").height();
+              let weAreCurblumH = $("#weAreCurblum").height();
+              let packagesH = $("#packages").height();
+              let contactFormH = $("#contactForm").height();
+              let bottomScroll = this.scrollY + windowH;
+              if (bottomScroll > heroH && bottomScroll < windowH + heroH) {
+                let mult = 0.2;
+                if (windowH > 1100) {
+                  mult = 0.1; //Slower translate for larger screens
+                }
+                let tY = (bottomScroll - heroH) * mult;
+                document
+                  .getElementById("weAreCurblum")
+                  .style.setProperty("--translateY", "-" + tY + "px");
+              }
+              //Fix for fast scrolling
+              if (this.scrollY > heroH) {
+                let mult = 0.2;
+                if (windowH > 1100) {
+                  mult = 0.1; //Slower translate for larger screens
+                }
+                let tY = windowH * mult;
+                document
+                  .getElementById("weAreCurblum")
+                  .style.setProperty("--translateY", "-" + tY + "px");
+              }
+              //Show topnav on scrollup and hide on scrolldown
+              if (this.scrollY > oldScroll && !mobileNav.is(":visible")) {
+                topNav.removeClass("t0");
+              } else {
+                topNav.addClass("t0");
+              }
+              oldScroll = this.scrollY;
+              //Prevent GET STARTED hover animation if not on top of document
+              if (this.scrollY === 0) {
+                $("#4").addClass("HOVER");
+              } else {
+                $("#4").removeClass("HOVER");
+              }
+              //Animate Contact Form
+              if (
+                $("#contactForm").css("opacity") == 0 &&
+                bottomScroll >
+                  heroH + weAreCurblumH + packagesH + contactFormH / 2
+              ) {
+                $("#contactForm").css({ opacity: 1, transform: "scale(1)" });
+              }
+            };
+            //Reset Scroll values onload
+            $(window).scroll();
 
-        $("#modal").on("click", "#modalBtn", function () {
-          $("#modal").css({ visibility: "hidden" });
-          $("#modal").html("");
-        });
+            //Intro Animations
+            $(".hero-img").addClass("l0 o1");
+            topNav.addClass("t0");
+            setTimeout(() => {
+              $(".hero-intro-text-b:nth-child(3)").addClass("l0");
+              setTimeout(() => {
+                $(".hero-intro-text-b:nth-child(2)").addClass("l0");
+                setTimeout(() => {
+                  $(".hero-intro-text-b:nth-child(1)").addClass("l0");
+                  setTimeout(() => {
+                    $(".hero-intro-text-s").addClass("o1");
+                    $(".hero-social").addClass("o1");
+                    topNav.css({ transition: "top 0.4s ease" });
+                  }, 700);
+                }, 200);
+              }, 200);
+            }, 1000);
+            //TranslateY #packages to remove gap
+            translatePackages();
+            window.addEventListener("resize", function () {
+              translatePackages();
+            });
+            //Initialize Packages carousel for small devices
+            $("#slickCarousel").slick({
+              infinite: false,
+              arrows: false,
+              dots: true,
+              slidesToShow: 1,
+              customPaging: function (slider, i) {
+                var thumb = $(slider.$slides[i]).data();
+                return "";
+              },
+            });
+            $(".go-contact").click(function () {
+              location.href = "#contact";
+            });
+            //Contact Form
+            $("input").focus(function () {
+              let label = $(this).siblings("label");
+              label.css({
+                fontSize: "0.8rem",
+                top: "12px",
+                left: "10px",
+              });
+            });
+            $("input").blur(function () {
+              let label = $(this).siblings("label");
+              if ($(this).val() == "") {
+                label.css({
+                  fontSize: "1.1rem",
+                  top: "50%",
+                  left: "20px",
+                });
+              }
+            });
+            //Validate Form
+            $("#contactForm").on("submit", function (e) {
+              e.preventDefault();
+
+              let name = sanitize($("#name").val());
+              let mail = sanitize($("#mail").val());
+              let phone = sanitize($("#phone").val());
+              let details = sanitize($("#details").val());
+              if (details == "") {
+                details = "Not Specified.";
+              }
+
+              let flag = true;
+              let errorTxt = "";
+
+              if (flag && name == "") {
+                errorTxt = "Name is a mandatory field";
+                flag = false;
+              } else if (flag && name.length < 5) {
+                errorTxt = "Name is too short";
+                flag = false;
+              } else if (flag && /\d/.test(name)) {
+                errorTxt = "Name is invalid";
+                flag = false;
+              } else if (flag && mail == "") {
+                errorTxt = "Email is a mandatory field";
+                flag = false;
+              } else if (flag && mail.length < 10) {
+                errorTxt = "Email is too short";
+                flag = false;
+              } else if (
+                flag &&
+                !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(mail)
+              ) {
+                errorTxt = "Email is invalid";
+                flag = false;
+              } else if (flag && phone == "") {
+                errorTxt = "Phone is a mandatory field";
+                flag = false;
+              } else if (flag && phone.length < 7) {
+                errorTxt = "Phone number is too short";
+                flag = false;
+              } else if (flag && !/^[\d\+]\d+$/.test(phone)) {
+                errorTxt = "Phone number is invalid";
+                flag = false;
+              }
+
+              $("#errorTxt").text(errorTxt);
+
+              if (flag) {
+                $("#contactBtn").prop("disabled", true);
+                $.post(
+                  "request.php",
+                  { name: name, mail: mail, phone: phone, details: details },
+                  function (response) {
+                    $("#modal").html(response);
+                    $("#modal").css({ visibility: "visible" });
+                    $("#contactBtn").prop("disabled", false);
+                  }
+                );
+              }
+            });
+          });
       });
     </script>
     <!-- Slick Slider -->

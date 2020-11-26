@@ -47,6 +47,7 @@ button:hover {
 }
 
 body {
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -149,6 +150,28 @@ body::before {
 }
 
 /*BUTTON EFFECT END*/
+#loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #FFFFFF;
+  z-index: 1000;
+}
+
 .mobile-nav-container {
   display: none;
   position: fixed;
@@ -363,7 +386,6 @@ body::before {
   height: 100vh;
   min-height: 656px;
   max-height: 826px;
-  background-image: url("assets/herobg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -844,8 +866,10 @@ body::before {
   padding: 0 12px;
   text-align: center;
   opacity: 0;
-  -webkit-transition: opacity 1.6s ease-in-out;
-  transition: opacity 1.6s ease-in-out;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .contact > .contact-form > h5 {
@@ -1040,7 +1064,8 @@ body::before {
   font-weight: bold;
 }
 
-.modal > .modal-content > button {
+.modal > .modal-content > a {
+  display: inline-block;
   background-color: #0EC888;
   padding: 6px 20px;
   margin: 5px 0;
@@ -1050,7 +1075,7 @@ body::before {
   border-radius: 50px;
 }
 
-.modal > .modal-content > button:active {
+.modal > .modal-content > a:active {
   background-color: #0b9868;
 }
 

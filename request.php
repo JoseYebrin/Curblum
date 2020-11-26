@@ -21,7 +21,7 @@ fclose($f);
 echo '<div class="modal-content">
 <p>Thank You!</p>
 <p>We have noted that down and will get back to you very soon.</p>
-<button id="modalBtn">Accept</button>
+<a id="modalBtn" href="">Accept</a>
 </div>';
 
 ?>
