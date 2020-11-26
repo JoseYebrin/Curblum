@@ -151,6 +151,17 @@ body::before {
 
 /*BUTTON EFFECT END*/
 #loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 200vh;
+  width: 200vw;
+  background-color: #FFFFFF;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+#loading > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -164,12 +175,8 @@ body::before {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  position: fixed;
-  top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #FFFFFF;
-  z-index: 1000;
 }
 
 .mobile-nav-container {
