@@ -147,13 +147,20 @@ body::before {
 /*BUTTON EFFECT END*/
 
 #loading {
-  @include flexCenter(row);
   position: fixed;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  left: 0;
+  height: 200vh;
+  width: 200vw;
   background-color: $white;
   z-index: 1000;
+  overflow: hidden;
+
+  &>div {
+    @include flexCenter(row);
+    height: 100vh;
+    width: 100vw;
+  }
 }
 
 .mobile-nav-container {
