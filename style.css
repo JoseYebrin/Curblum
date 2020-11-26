@@ -179,6 +179,35 @@ body::before {
   width: 100vw;
 }
 
+#loading > div > img {
+  -webkit-animation: loading 4s ease-in-out forwards infinite;
+          animation: loading 4s ease-in-out forwards infinite;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .mobile-nav-container {
   display: none;
   position: fixed;
