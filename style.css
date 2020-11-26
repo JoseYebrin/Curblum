@@ -47,6 +47,7 @@ button:hover {
 }
 
 body {
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
@@ -385,7 +386,6 @@ body::before {
   height: 100vh;
   min-height: 656px;
   max-height: 826px;
-  background-image: url("assets/herobg.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

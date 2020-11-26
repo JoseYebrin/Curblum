@@ -18,6 +18,7 @@
     <title>Curblum Web Services</title>
   </head>
   <body>
+    <div id="loading"><img src="assets/loading.gif" alt="loading" /></div>
     <div id="mobileNav" class="mobile-nav-container">
       <ul class="mobile-nav lightgreen">
         <li>
@@ -726,6 +727,13 @@
     <script src="effects.js"></script>
     <script>
       $(document).ready(function () {
+        $("<img/>")
+          .attr("src", "assets/herobg.jpg")
+          .on("load", function () {
+            $(this).remove(); // prevent memory leaks
+            $("#loading").remove(); // remove loading gif
+            $("body").css({ overflowY: "auto" });
+            $("#home").css("background-image", 'url("assets/herobg.jpg")');
             //START
             const mobileIcon = $("#i1");
             const mobileNav = $("#mobileNav");
@@ -998,6 +1006,7 @@
                 );
               }
             });
+          });
       });
     </script>
     <!-- Slick Slider -->
