@@ -857,6 +857,7 @@ body::before {
   background-color: #0EC888;
   margin-top: 140px;
   padding-bottom: 80px;
+  overflow: hidden;
 }
 
 .contact > .contact-form {
@@ -866,8 +867,8 @@ body::before {
   padding: 0 12px;
   text-align: center;
   opacity: 0;
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
